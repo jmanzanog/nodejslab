@@ -1,0 +1,29 @@
+'use strict'
+
+const debug = require('debug')('example:db:setup')
+const db = require('./')
+
+async function setup () {
+  const config = {
+    database: process.env.DB_NAME || 'xqirljbw',
+    username: process.env.DB_USER || 'xqirljbw',
+    password: process.env.DB_PASS || 'ANRFB8fCHxH0O4bgePMoVKnn8GSmmZKX',
+    host: process.env.DB_HOST || 'ruby.db.elephantsql.com',
+    dialect: 'postgres',
+    logging: s => debug(s),
+    setup: true
+  }
+
+  await db(config).catch(handleFatalError)
+
+  console.log('Success!')
+  process.exit(0)
+}
+
+function handleFatalError (err) {
+  console.error(err.message)
+  console.error(err.stack)
+  process.exit(1)
+}
+
+setup()
