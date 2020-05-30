@@ -36,5 +36,12 @@
     "sinon": "^9.0.2",
     "sqlite3": "^4.2.0",
     "standard": "^14.3.4"
+  },
+  "standard": {
+    "ignore": [
+      "**/out/",
+      "/node_modules",
+      "/resources/"
+    ]
   }
 }
