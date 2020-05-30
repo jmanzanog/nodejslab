@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "setup": "@powershell $env:DEBUG='example:*';node setup.js",
+    "setup": "DEBUG=example:* node setup.js",
     "lint": "standard",
-    "test": "SET DEBUG=example:* && nyc --reporter=lcov ava tests/* --verbose"
+    "fix": "standard --fix",
+    "test": "DEBUG=example:* nyc --reporter=lcov ava tests/* --verbose"
   },
   "repository": {
     "type": "git",
