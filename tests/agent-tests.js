@@ -27,7 +27,7 @@ const connectedArgs = {
 }
 
 const usernameArgs = {
-  where: { username: 'platzi', connected: true }
+  where: { username: 'jmanzano', connected: true }
 }
 
 const uuidArgs = {
@@ -84,7 +84,7 @@ test.beforeEach(async () => {
     .returns(Promise.resolve(agentFixtures.connected))
   AgentStub.findAll
     .withArgs(usernameArgs)
-    .returns(Promise.resolve(agentFixtures.platzi))
+    .returns(Promise.resolve(agentFixtures.jmanzano))
 
   const setupDatabase = proxyquire('../', {
     './models/agent': () => AgentStub,
@@ -178,7 +178,7 @@ test.serial('Agent#findConnected', async (t) => {
 })
 
 test.serial('Agent#findByUsername', async (t) => {
-  const agents = await db.Agent.findByUsername('platzi')
+  const agents = await db.Agent.findByUsername('jmanzano')
 
   t.true(AgentStub.findAll.called, 'findAll should be called on model')
   t.true(AgentStub.findAll.calledOnce, 'findAll should be called once')
@@ -189,10 +189,10 @@ test.serial('Agent#findByUsername', async (t) => {
 
   t.is(
     agents.length,
-    agentFixtures.platzi.length,
+    agentFixtures.jmanzano.length,
     'agents should be the same amount'
   )
-  t.deepEqual(agents, agentFixtures.platzi, 'agents should be the same')
+  t.deepEqual(agents, agentFixtures.jmanzano, 'agents should be the same')
 })
 
 test.serial('Agent#createOrUpdate - exists', async (t) => {
