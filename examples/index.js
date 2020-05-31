@@ -11,44 +11,29 @@ async function run () {
     dialect: 'postgres'
   }
 
-  const { Agent, Metric } = await db(config).catch(handleFatalError)
+  const { Redemption, sequelize } = await db(config).catch(handleFatalError)
 
-  const agent = await Agent.createOrUpdate({
-    uuid: 'yyy',
-    name: 'test',
-    username: 'test',
-    hostname: 'test',
-    pid: 1,
-    connected: true
+  const redemption = await Redemption.createOrUpdate({
+    id: Date.now().toFixed(0),
+    broadcasted: true,
+    created: Date.now(),
+    honeybees: 123456,
+    points: 900,
+    status: 'DONE',
+    lifeuserid: '123456565',
+    code: Math.floor(Math.random() * Math.floor(50000)).toString(),
+    pin: Math.floor(Math.random() * Math.floor(50000)).toString(),
+    updated: Date.now()
   }).catch(handleFatalError)
 
-  console.log('--agent--')
-  console.log(agent)
+  console.log('--redemption--')
+  console.log(redemption)
 
-  const agents = await Agent.findAll().catch(handleFatalError)
-  console.log('--agents--')
-  console.log(agents)
+  const redemptions = await Redemption.findAll().catch(handleFatalError)
+  console.log('--redemptions--')
+  console.log(redemptions)
 
-  const metrics = await Metric.findByAgentUuid(agent.uuid).catch(
-    handleFatalError
-  )
-  console.log('--metrics--')
-  console.log(metrics)
-
-  const metric = await Metric.create(agent.uuid, {
-    type: 'memory',
-    value: '300'
-  }).catch(handleFatalError)
-
-  console.log('--metric--')
-  console.log(metric)
-
-  const metricsByType = await Metric.findByTypeAgentUuid(
-    'memory',
-    agent.uuid
-  ).catch(handleFatalError)
-  console.log('--metrics--')
-  console.log(metricsByType)
+  sequelize.close()
 }
 
 function handleFatalError (err) {
