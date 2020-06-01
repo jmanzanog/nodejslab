@@ -42,4 +42,4 @@ function handleFatalError (err) {
   process.exit(1)
 }
 
-run()
+module.exports.run = run

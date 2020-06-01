@@ -5,7 +5,8 @@
   "main": "dbClient.js",
   "scripts": {
     "lint": "standard --verbose | snazzy",
-    "fix": "standard --fix"
+    "fix": "standard --fix",
+    "build": "webpack --display-error-details handler.js bundle.js"
   },
   "repository": {
     "type": "git",
@@ -19,12 +20,16 @@
   },
   "homepage": "https://github.com/jmanzanog/nodejslab#readme",
   "dependencies": {
+    "pg": "^8.2.1",
+    "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.11"
   },
   "devDependencies": {
-    "standard": "^14.3.4",
     "serverless-offline": "^6.3.0",
-    "serverless-plugin-include-dependencies": "^4.1.0"
+    "serverless-plugin-include-dependencies": "^4.1.0",
+    "standard": "^14.3.4",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   },
   "standard": {
     "ignore": [

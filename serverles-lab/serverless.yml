@@ -12,9 +12,9 @@
 # Happy Coding!
 
 service: serverles-lab
-plugins:
-  - serverless-offline
-  - serverless-plugin-include-dependencies
+#plugins:
+#  - serverless-offline
+#  - serverless-plugin-include-dependencies
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
@@ -22,12 +22,16 @@ plugins:
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
-package:
-  individually: true
-  exclude:
-    - node_modules/**/README.*
-    - node_modules/**/test/**
-    - example/**
+#package:
+#  individually: true
+#  exclude:
+#    - node_modules/**/README.*
+#    - node_modules/**/test/**
+#    - node_modules/**/LICENSE.*
+#    - node_modules/**/LICENSE
+#    - node_modules/**/*.md
+#    - node_modules/**/CHANGELOG.*
+#    - examples/**
 
 provider:
   name: aws
